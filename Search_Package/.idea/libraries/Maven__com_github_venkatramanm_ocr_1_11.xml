@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.github.venkatramanm:ocr:1.11">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../../Apache/m2/repository/com/github/venkatramanm/ocr/1.11/ocr-1.11.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../../../Apache/m2/repository/com/github/venkatramanm/ocr/1.11/ocr-1.11-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../../../Apache/m2/repository/com/github/venkatramanm/ocr/1.11/ocr-1.11-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
