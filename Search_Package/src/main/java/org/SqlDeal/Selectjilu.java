@@ -13,7 +13,8 @@ import java.util.Map;
 
 public class Selectjilu {
     private static Logger logger = Logger.getLogger(Selectjilu.class);
-    public static String selectjilu(String uuid){
+
+    public static String selectjilu(String uuid) {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -25,25 +26,24 @@ public class Selectjilu {
         try {
 
             conn = JDBCUtils_JDBC.getConnection();
-            String sql = "Select *from jilu where uuid ='"+uuid+"';";
+            String sql = "Select *from jilu where uuid ='" + uuid + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
-            while (rs.next()){
-                 expCode = rs.getString("expCode");
-                 expNo   = rs.getString("expNo");
+            while (rs.next()) {
+                expCode = rs.getString("expCode");
+                expNo = rs.getString("expNo");
 
-                }
-           res.put("expCode",expCode);
-            res.put("expNo",expNo);
-             state = gson.toJson(res);
-            logger.info("从数据库查出来的expCodea和expNo转成 JSON字符串"+state);
-
+            }
+            res.put("expCode", expCode);
+            res.put("expNo", expNo);
+            state = gson.toJson(res);
+            logger.info("从数据库查出来的expCodea和expNo转成 JSON字符串" + state);
 
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtils_JDBC.release(conn,stmt);
+        } finally {
+            JDBCUtils_JDBC.release(conn, stmt);
         }
         return state;
 

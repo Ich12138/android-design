@@ -11,7 +11,6 @@ public class Base64Test {
      * 将本地图片进行Base64位编码
      *
      * @param imageFile 图片的url路径，如D:\\photo\\1.png
-     *
      * @return
      */
     public static String encodeImgageToBase64(File imageFile) {

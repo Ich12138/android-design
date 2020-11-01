@@ -10,7 +10,8 @@ import java.util.Map;
 
 public class Searchjilu {//查看查询记录的处理
     private static Logger logger = Logger.getLogger(Searchjilu.class);
-    public static String searchjilu(String date){
+
+    public static String searchjilu(String date) {
         String state = null;
 
         Map map = (Map) JSON.parse(date);
@@ -19,7 +20,7 @@ public class Searchjilu {//查看查询记录的处理
             JDBCUtils_JDBC.getConnection();
             state = Selectjilu.selectjilu(uuid);
 
-            logger.info("返回的state值为："+state);
+            logger.info("返回的state值为：" + state);
 
 
         } catch (SQLException e) {
@@ -31,7 +32,6 @@ public class Searchjilu {//查看查询记录的处理
         return state;
 
     }
-
 
 
 }

@@ -8,7 +8,7 @@ import java.io.File;
 
 public class Test {
     public static void main(String[] args) {
-      File f = new File("/home/wwj/File/12.png");
+        File f = new File("/home/wwj/File/12.png");
         String imageBase = Base64Test.encodeImgageToBase64(f);
         imageBase = imageBase.replaceAll("\r\n", "");
         imageBase = imageBase.replaceAll("\\+", "%2B");

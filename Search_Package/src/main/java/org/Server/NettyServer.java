@@ -67,6 +67,6 @@ public class NettyServer {
 
     public static void main(String[] args) {
         NettyServer nettyServer = new NettyServer();
-        nettyServer.start("0.0.0.0",6789);
+        nettyServer.start("0.0.0.0", 6789);
     }
 }

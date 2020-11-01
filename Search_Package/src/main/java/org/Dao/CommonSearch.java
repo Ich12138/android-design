@@ -17,7 +17,8 @@ import java.util.Map;
 
 public class CommonSearch {
     private static Logger logger = Logger.getLogger(CommonSearch.class);
-    public String commonSearch(String uuid,String expCode,String expNo){
+
+    public String commonSearch(String uuid, String expCode, String expNo) {
         String state;
         Map res = new HashMap();
         Gson gson = new Gson();
@@ -29,28 +30,28 @@ public class CommonSearch {
             String result = api.getOrderTracesByJson(expCode, expNo);
             JSONObject jsonObject = JSON.parseObject(result);
             Boolean success = (Boolean) jsonObject.get("Success");
-            if (success==true){
-                String traceArray=jsonObject.getString("Traces");
+            if (success == true) {
+                String traceArray = jsonObject.getString("Traces");
                 List<Trance> trances_list = new ArrayList<Trance>(JSONArray.parseArray(traceArray, Trance.class));
                 for (Trance trance : trances_list) {
-                    message="时间：" + trance.getAcceptTime()+"      "+trance.getAcceptStation()+"\n";
+                    message = "时间：" + trance.getAcceptTime() + "      " + trance.getAcceptStation() + "\n";
                     System.out.println();
-                    message +=message;
+                    message += message;
 
                 }
-                res.put("state",message);
-                InsertSearch.insertSearch(uuid,expCode,expNo);
+                res.put("state", message);
+                InsertSearch.insertSearch(uuid, expCode, expNo);
 
-            }else {
+            } else {
                 System.out.println("暂无该快递任何信息");
-                res.put("state",0);
+                res.put("state", 0);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-         state = gson.toJson(res);
-        logger.info("state---------------------" +state);
+        state = gson.toJson(res);
+        logger.info("state---------------------" + state);
         return state;
     }
 }

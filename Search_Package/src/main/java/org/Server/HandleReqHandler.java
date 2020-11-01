@@ -22,46 +22,47 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 public class HandleReqHandler extends ChannelInboundHandlerAdapter {
     private static Logger logger = Logger.getLogger(HandleReqHandler.class);
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         logger.info("===================1=======================");
         HttpPostRequestDecoder decoder = null;
         FullHttpRequest fuHR = (FullHttpRequest) msg;
         String url = fuHR.uri();
-        logger.info("url-----------------"+url);
-        Charset charset=Charset.forName("utf-8");
-        ByteBuf byteBuf=fuHR.content();
-        String data=byteBuf.toString(charset);
-        String state="";
-        switch (url){
+        logger.info("url-----------------" + url);
+        Charset charset = Charset.forName("utf-8");
+        ByteBuf byteBuf = fuHR.content();
+        String data = byteBuf.toString(charset);
+        String state = "";
+        switch (url) {
             //请求验证码
             case "/random":
-               state = ResighterDeal.reqRandom(data);
-             break;
+                state = ResighterDeal.reqRandom(data);
+                break;
             //注册（接收注册页面的所有信息）
             case "/register":
                 state = ResighterDeal.SuccessMessage(data);
-              break;
+                break;
             //登录
             case "/login":
-                state =LoginDeal.login(data);
-             break;
+                state = LoginDeal.login(data);
+                break;
             //存储快递上门的个人信息
             case "/storemessage":
                 state = StoreMassage.getMessage(data);
-             break;
+                break;
             //联系快递员并通知
             case "/call":
                 state = CallMe.call(data);
-             break;
+                break;
             //输入查询
             case "/outSearch":
                 state = OutSearch.outSearch(data);
-              break;
+                break;
 
             //OCR查询
             case "/ocrSearch":
-                state =  OCRSearch.ocrSearch(data);
+                state = OCRSearch.ocrSearch(data);
                 break;
             //条形码查询
             case "/txmSearch":
@@ -87,7 +88,6 @@ public class HandleReqHandler extends ChannelInboundHandlerAdapter {
         response.headers().set(CONTENT_TYPE, "text/json");
         response.headers().setInt(CONTENT_LENGTH, ((DefaultFullHttpResponse) response).content().readableBytes());
         ctx.writeAndFlush(response);
-
 
 
     }

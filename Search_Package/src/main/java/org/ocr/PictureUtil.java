@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class PictureUtil {
-    public static String request(String httpUrl, String httpArg ) {
+    public static String request(String httpUrl, String httpArg) {
         BufferedReader reader = null;
         AuthService authService = new AuthService();
         String result = null;
@@ -21,10 +21,10 @@ public class PictureUtil {
             // 设置HTTP方法：POST
             connection.setRequestMethod("POST");
             // 设置其Header的Content-Type参数为application/x-www-form-urlencoded
-            connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             // 填入apikey到HTTP header
             connection.setRequestProperty("apikey", "ejQ7MHBBuT1YWwjaLZCKTxj5");
-            connection.setRequestProperty("probability","true");
+            connection.setRequestProperty("probability", "true");
 //            connection.setRequestProperty("image",imageBase);
             // 将第二步获取到的token填入到HTTP header
 //            connection.setRequestProperty("access_token", authService.getAuth());

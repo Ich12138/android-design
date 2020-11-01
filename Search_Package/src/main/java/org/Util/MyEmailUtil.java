@@ -13,7 +13,8 @@ import java.util.Properties;
 
 public class MyEmailUtil {
     private static Logger logger = Logger.getLogger(MyEmailUtil.class);
-    public static int doSend(String mail,String code) {
+
+    public static int doSend(String mail, String code) {
         try {
             Properties properties = new Properties();
             //连接协议
@@ -42,14 +43,14 @@ public class MyEmailUtil {
 //            String code ="您正在注册快递查的帐号，收到的验证码"+i;
             message.setText(code);
             //同时把QQ_EMAIL和验证码在redis里存一份，有失效时间
-           // RedisUtils.save(user,i);
+            // RedisUtils.save(user,i);
             //得到邮递员对象
             Transport transport = session.getTransport();
             //连接自己的邮箱账户
             transport.connect("2418173870@qq.com", "gbshycftfjuqecei");
             //发送邮件
             transport.sendMessage(message, message.getAllRecipients());
-        }catch (MessagingException e){
+        } catch (MessagingException e) {
             e.printStackTrace();
             System.out.println("发送失败！");
             logger.info("发送失败！");

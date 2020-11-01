@@ -15,48 +15,49 @@ import java.util.Map;
 
 public class LoginDeal {//密码登录验证
     private static Logger logger = Logger.getLogger(LoginDeal.class);
-   public static String login(String data){
 
-       logger.info("-------------匹配接口 login 成功！已进入方法-------------------");
-       Map res =new HashMap();
-       Gson gson = new Gson();
-       Connection conn=null;
-       Statement stamt=null;
-       ResultSet rs=null;
+    public static String login(String data) {
 
-       Map map = (Map) JSON.parse(data);
-      String email = String.valueOf(map.get("email"));
-      String passwd = String.valueOf(map.get("password"));
-      String sql="select password from user where email= '"+email+"';";
+        logger.info("-------------匹配接口 login 成功！已进入方法-------------------");
+        Map res = new HashMap();
+        Gson gson = new Gson();
+        Connection conn = null;
+        Statement stamt = null;
+        ResultSet rs = null;
 
-      logger.info("得到的email为"+email);
-      logger.info("得到的password为"+passwd);
-      logger.info("LoginDeal 打印的sql语句为"+sql);
+        Map map = (Map) JSON.parse(data);
+        String email = String.valueOf(map.get("email"));
+        String passwd = String.valueOf(map.get("password"));
+        String sql = "select password from user where email= '" + email + "';";
 
-       try {
-           conn=JDBCUtils_JDBC.getConnection();
-           stamt=conn.createStatement();
-           rs=stamt.executeQuery(sql);
-           if (rs.next()){
+        logger.info("得到的email为" + email);
+        logger.info("得到的password为" + passwd);
+        logger.info("LoginDeal 打印的sql语句为" + sql);
 
-               String password = rs.getString("password");
-               logger.info("查库的password---------"+password);
-               if (passwd.equals(password)){
-                   res.put("state",1);
-                   System.out.println("密码正确 可以登录");
-               }else {
-                   res.put("state",0);
-                   System.out.println("密码错误");
-               }
-           }
-       } catch (SQLException e) {
-           logger.error(e.getMessage());
-           e.printStackTrace();
-       }
+        try {
+            conn = JDBCUtils_JDBC.getConnection();
+            stamt = conn.createStatement();
+            rs = stamt.executeQuery(sql);
+            if (rs.next()) {
 
-       String state = gson.toJson(res);
-       logger.info("返回的结果state 为："+state);
+                String password = rs.getString("password");
+                logger.info("查库的password---------" + password);
+                if (passwd.equals(password)) {
+                    res.put("state", 1);
+                    System.out.println("密码正确 可以登录");
+                } else {
+                    res.put("state", 0);
+                    System.out.println("密码错误");
+                }
+            }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
 
-       return state;
-   }
+        String state = gson.toJson(res);
+        logger.info("返回的结果state 为：" + state);
+
+        return state;
+    }
 }

@@ -8,7 +8,8 @@ import java.util.Map;
 
 public class Detail {
     private static Logger logger = Logger.getLogger(Detail.class);
-    public String detail(String data){
+
+    public String detail(String data) {
         String state = null;
         Map map = (Map) JSON.parse(data);
         String uuid = String.valueOf(map.get("uuid"));
@@ -16,9 +17,9 @@ public class Detail {
         String expNo = String.valueOf(map.get("expNo"));
 
         CommonSearch commonSearch = new CommonSearch();
-        state = commonSearch.commonSearch(uuid,expCode,expNo);
+        state = commonSearch.commonSearch(uuid, expCode, expNo);
 
-        logger.info("返回的state:"+state);
+        logger.info("返回的state:" + state);
         return state;
     }
 }

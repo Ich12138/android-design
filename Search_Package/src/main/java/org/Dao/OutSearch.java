@@ -10,7 +10,8 @@ import java.util.Map;
 
 public class OutSearch {
     private static Logger logger = Logger.getLogger(OutSearch.class);
-    public static String outSearch(String date){
+
+    public static String outSearch(String date) {
         logger.info("-------------匹配接口 outSearch 成功！已进入方法-------------------");
 
         String state;
@@ -21,14 +22,14 @@ public class OutSearch {
         String expCode = String.valueOf(map.get("expCode"));
         String expNo = String.valueOf(map.get("expNo"));
 
-        logger.info("uuid"+uuid);
-        logger.info("expCode"+expCode);
-        logger.info("expNo"+expCode);
+        logger.info("uuid" + uuid);
+        logger.info("expCode" + expCode);
+        logger.info("expNo" + expCode);
 
         CommonSearch commonSearch = new CommonSearch();
-        state = commonSearch.commonSearch(uuid,expCode,expNo);
+        state = commonSearch.commonSearch(uuid, expCode, expNo);
 
-        logger.info("state------------"+state);
+        logger.info("state------------" + state);
         return state;
 
     }

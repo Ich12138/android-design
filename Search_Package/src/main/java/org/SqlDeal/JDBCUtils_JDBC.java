@@ -16,14 +16,15 @@ public class JDBCUtils_JDBC {
      * 在java中，编写数据库连接池需实现java.sql.DataSource接口，每一种数据库连接池都是DataSource接口的实现
      * DBCP连接池就是java.sql.DataSource接口的一个具体实现
      */
-    private static DataSource ds=null;
+    private static DataSource ds = null;
+
     //在静态代码块中创建数据库连接池
     static {
-        try{
+        try {
             //加载dbcpconfig.properties
-            InputStream in=JDBCUtils_JDBC.class.getClassLoader().getResourceAsStream("jdbc.properties");
+            InputStream in = JDBCUtils_JDBC.class.getClassLoader().getResourceAsStream("jdbc.properties");
             System.out.println("配置文件读取成功！------------------------------");
-            Properties prop=new Properties();
+            Properties prop = new Properties();
             prop.load(in);
             System.out.println("ssssssssssssssssssssssssss");
             //创建数据源
@@ -37,49 +38,52 @@ public class JDBCUtils_JDBC {
             System.out.println("数据库连接池创建失败！");
         }
     }
+
     //从数据源中获得数据库连接
     public static Connection getConnection() throws SQLException {
         return ds.getConnection();
     }
+
     //释放资源，包括connection数据库连接对象，负责执行sql命令的statement对象
-    public static void release(Connection conn, Statement st){
-        if(st!=null){
+    public static void release(Connection conn, Statement st) {
+        if (st != null) {
             try {
                 //关闭负责执行SQL命令的Statement对象
                 st.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            st=null;
+            st = null;
         }
-        if(conn!=null){
-            try{
+        if (conn != null) {
+            try {
                 //将Connection连接对象还给数据库连接池
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            conn=null;
+            conn = null;
         }
     }
-    public static void releases(Connection conn, PreparedStatement ps){
-        if(ps!=null){
+
+    public static void releases(Connection conn, PreparedStatement ps) {
+        if (ps != null) {
             try {
                 //关闭负责执行SQL命令的Statement对象
                 ps.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            ps=null;
+            ps = null;
         }
-        if(conn!=null){
-            try{
+        if (conn != null) {
+            try {
                 //将Connection连接对象还给数据库连接池
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            conn=null;
+            conn = null;
         }
     }
 
